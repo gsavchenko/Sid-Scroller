@@ -17,6 +17,9 @@ module scenes {
         // Private variables
         private _imageGameOver : createjs.Bitmap; // Game over image
         private _imageBackground : createjs.Bitmap; // Background image
+        private _player : objects.Player;
+        private _scrollableObjectContainer : createjs.Container;
+        private _food : objects.Food;
         
         constructor() {
             super();
@@ -32,13 +35,31 @@ module scenes {
 
             this._imageBackground = new createjs.Bitmap(assets.getResult("Background_Image"));
             this.addChild(this._imageBackground);
+
+            this._player = new objects.Player("player");
+            this.addChild(this._player);
+
+            this._food = new objects.Food("food");
+            this._food.x = 400;
+            this._food.y = 350;
+            this.addChild(this._food);
+
+            this._scrollableObjectContainer = new createjs.Container();
+            this._scrollableObjectContainer.addChild(this._imageBackground);
+            this._scrollableObjectContainer.addChild(this._player);
+            this._scrollableObjectContainer.addChild(this._food);
+            this.addChild(this._scrollableObjectContainer);
             
             stage.addChild(this);
+            
         }
 
         // Update objects in scene
         public update() : void {
+            this._player.update();
 
+            if(this._player.x + 635 <= this._scrollableObjectContainer.getBounds().width)
+                this._scrollableObjectContainer.regX += 2;
         }
 
         // Menu button method

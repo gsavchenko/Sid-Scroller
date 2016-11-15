@@ -16,8 +16,7 @@ module scenes {
         private _buttonPlay : objects.Button; // Play button
         private _buttonRules : objects.Button; // Instruction button
         private _imageTitle : createjs.Bitmap; // Title image
-        private _mm : managers.Meteor_Manager; // Meteor manager
-        private _moon : objects.Moon; // Moon        
+        private _mm : managers.Meteor_Manager; // Meteor manager   
 
         // Menu Class Contructor
         constructor() {
@@ -38,21 +37,15 @@ module scenes {
             this._imageTitle.x = config.Screen.CENTER_X - 100;
             this._imageTitle.y = -15;
 
-            this._mm = new managers.Meteor_Manager(4);
-            this._mm.addToScene(this);      
-
-            this._moon = new objects.Moon("moon");
-
             // Add to global stage container in draw order
             stage.addChild(this);
             stage.addChild(this._buttonPlay);
             stage.addChild(this._buttonRules);
-            stage.addChild(this._moon);
             stage.addChild(this._imageTitle);
         }
 
         public update() : void{
-            this._mm.update();
+
         }
 
         // Play button handler method

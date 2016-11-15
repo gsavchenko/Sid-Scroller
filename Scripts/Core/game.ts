@@ -50,8 +50,8 @@ function init() {
         ],
 
         "frames": [
-            [2, 1, 43, 43, 0], // player
-            [53, 11, 21, 21, 0], // food
+            [2, 1, 46, 43, 0], // player
+            [53, 11, 25, 25, 0], // food
         ],
 
         "animations": { // define animations

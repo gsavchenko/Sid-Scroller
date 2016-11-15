@@ -20,115 +20,55 @@ var objects;
         __extends(Player, _super);
         function Player(imageString) {
             _super.call(this, gameAtlas, imageString, "");
-            // Public variables
-            // Track walking into the moon
-            this.collideLeft = false;
-            this.collideRight = false;
-            // Jumping timer
-            this._jumpTimer = 0;
-            // Private variables
-            // Track animations
-            this._leftAnimationStarted = false;
-            this._rightAnimationStarted = false;
-            // Track falling
-            this._fallSpeed = 2;
-            this._falling = true;
-            // Track jumping
-            this._isJumping = false;
             window.onkeydown = this._onKeyDown;
             window.onkeyup = this._onKeyUp;
         }
         // Set initial position of player
         Player.prototype.start = function () {
-            this.x = 320;
-            this.y = 300;
+            this.x = 35;
+            this.y = 290;
         };
         // Check for input and update player
         Player.prototype.update = function () {
             _super.prototype.update.call(this);
             // Check for input controls
-            if (controls.RIGHT) {
-                this.moveRight();
+            if (controls.UP) {
+                this.moveUp();
             }
-            if (controls.LEFT) {
-                this.moveLeft();
+            if (controls.DOWN) {
+                this.moveDown();
             }
-            if (controls.JUMP) {
-                this.jump();
-            }
-            // If no buttons are pressed set player to idle
-            if (!controls.LEFT && !controls.RIGHT && !controls.JUMP) {
-                this._leftAnimationStarted = false;
-                this._rightAnimationStarted = false;
-                this.gotoAndPlay("player_stand");
-            }
-            // If the player is falling increase position on canvas to simulate falling
-            if (this._falling)
-                this.y += this._fallSpeed;
+            this.x += 2;
         };
         // Finite state machine pattern to check for input
         Player.prototype._onKeyDown = function (event) {
             switch (event.keyCode) {
-                case keys.A:
-                    controls.LEFT = true;
+                case keys.W:
+                    controls.UP = true;
                     break;
-                case keys.D:
-                    controls.RIGHT = true;
-                    break;
-                case keys.SPACE:
-                    controls.JUMP = true;
+                case keys.S:
+                    controls.DOWN = true;
                     break;
             }
         };
         // Check which keys have been pressed
         Player.prototype._onKeyUp = function (event) {
             switch (event.keyCode) {
-                case keys.A:
-                    controls.LEFT = false;
+                case keys.W:
+                    controls.UP = false;
                     break;
-                case keys.D:
-                    controls.RIGHT = false;
-                    break;
-                case keys.SPACE:
-                    controls.JUMP = false;
+                case keys.S:
+                    controls.DOWN = false;
                     break;
             }
         };
         // Move the player left
-        Player.prototype.moveLeft = function () {
-            if (!this._leftAnimationStarted && controls.LEFT) {
-                this._leftAnimationStarted = true;
-                this.gotoAndPlay("player_move_left");
-            }
-            // Check collision with moon
-            if (this.collideLeft) {
-                this.x -= 5;
-                this.y -= 4;
-            }
-            else
-                this.x -= 5;
+        Player.prototype.moveUp = function () {
+            this.y -= 5;
         };
         // Move the player right
-        Player.prototype.moveRight = function () {
-            if (!this._rightAnimationStarted && controls.RIGHT) {
-                this._rightAnimationStarted = true;
-                this.gotoAndPlay("player_move_left");
-            }
-            // Check collision with moon
-            if (this.collideRight) {
-                this.x += 5;
-                this.y -= 4;
-            }
-            else
-                this.x += 5;
-        };
-        // Move player up
-        Player.prototype.jump = function () {
-            if (this._jumpTimer <= 25) {
-                this._jumpTimer++;
-                this.gotoAndPlay("player_jump");
-                this.y -= 8;
-            }
+        Player.prototype.moveDown = function () {
+            this.y += 5;
         };
         return Player;
     }(objects.GameObject));

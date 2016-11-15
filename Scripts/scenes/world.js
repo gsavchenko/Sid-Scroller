@@ -31,10 +31,24 @@ var scenes;
             this._imageGameOver.y = -15;
             this._imageBackground = new createjs.Bitmap(assets.getResult("Background_Image"));
             this.addChild(this._imageBackground);
+            this._player = new objects.Player("player");
+            this.addChild(this._player);
+            this._food = new objects.Food("food");
+            this._food.x = 400;
+            this._food.y = 350;
+            this.addChild(this._food);
+            this._scrollableObjectContainer = new createjs.Container();
+            this._scrollableObjectContainer.addChild(this._imageBackground);
+            this._scrollableObjectContainer.addChild(this._player);
+            this._scrollableObjectContainer.addChild(this._food);
+            this.addChild(this._scrollableObjectContainer);
             stage.addChild(this);
         };
         // Update objects in scene
         World.prototype.update = function () {
+            this._player.update();
+            if (this._player.x + 635 <= this._scrollableObjectContainer.getBounds().width)
+                this._scrollableObjectContainer.regX += 2;
         };
         // Menu button method
         World.prototype.menuButtonClick = function (event) {

@@ -32,18 +32,13 @@ var scenes;
             this._imageTitle = new createjs.Bitmap(assets.getResult("Title_Image"));
             this._imageTitle.x = config.Screen.CENTER_X - 100;
             this._imageTitle.y = -15;
-            this._mm = new managers.Meteor_Manager(4);
-            this._mm.addToScene(this);
-            this._moon = new objects.Moon("moon");
             // Add to global stage container in draw order
             stage.addChild(this);
             stage.addChild(this._buttonPlay);
             stage.addChild(this._buttonRules);
-            stage.addChild(this._moon);
             stage.addChild(this._imageTitle);
         };
         Menu.prototype.update = function () {
-            this._mm.update();
         };
         // Play button handler method
         Menu.prototype._playButtonClick = function (event) {

@@ -6,30 +6,33 @@ var __extends = (this && this.__extends) || function (d, b) {
 /*
     Object module to group all user-defined objects under the same "namespace aka module"
     ------------------------------------------------------------------------------------
-    Class:          Moon
-    Description:    Moon class extends GameObject and creates Moon
+    Class:          Meteor
+    Description:    Meteor class extends GameObject and creates/updates meteor objects.
     Author:         George Savchenko
     Revision History:
     Name:               Date:        Description:
     -----------------------------------------------------------------------------------
-    George Savchenko    10/28/2016   Updated comments and removed center variable
+    George Savchenko    10/28/2016   Removed _id that wasn't being used
 */
 var objects;
 (function (objects) {
-    var Moon = (function (_super) {
-        __extends(Moon, _super);
-        // Create moon from gameAtlas which stores animation frames
-        // Position defaults so that it is shared between all moon objects unless
-        // specified otherwise
-        function Moon(imageString, posX, posY) {
-            if (posX === void 0) { posX = 330; }
-            if (posY === void 0) { posY = 740; }
+    var Food = (function (_super) {
+        __extends(Food, _super);
+        // Create meteor from gameAtlas which stores animation frames
+        function Food(imageString, posX, posY) {
             _super.call(this, gameAtlas, imageString, "");
+            // Public variables
+            this.isDead = false; // should the meteor be destroyed?
             this.x = posX;
             this.y = posY;
         }
-        return Moon;
+        // Update the meteor's position
+        Food.prototype.update = function () {
+            if (this.y >= canvas.clientHeight)
+                this.isDead = true;
+        };
+        return Food;
     }(objects.GameObject));
-    objects.Moon = Moon;
+    objects.Food = Food;
 })(objects || (objects = {}));
-//# sourceMappingURL=moon.js.map
+//# sourceMappingURL=food.js.map
