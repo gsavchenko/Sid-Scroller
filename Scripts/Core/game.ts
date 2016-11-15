@@ -21,7 +21,8 @@ var assetData:objects.Asset[] = [
     {id: "Rules", src:"../../Assets/images/instructions.png"},
     {id: "Title_Image", src:"../../Assets/images/title.png"},
     {id: "Gameover_Image", src:"../../Assets/images/gameover.png"},
-    {id: "Spritesheet", src:"../../Assets/images/spritesheet.png"}
+    {id: "Spritesheet", src:"../../Assets/images/spritesheet.png"},
+    {id: "Background_Image", src:"../../Assets/images/Background.png"}
 ];
 
 function preload() {
@@ -49,31 +50,13 @@ function init() {
         ],
 
         "frames": [
-            [12, 8, 31, 42, 0], // player stand
-            [43, 8, 48, 43, 0], // player jump
-            [14, 56, 31, 42, 0], // move left
-            [51, 55, 31, 42, 0], // move right
-            [100, 7, 102, 132, 0], // meteor 1
-            [211, 7, 106, 139, 0], // meteor 2
-            [326, 7, 108, 135, 0], // meteor 3
-            [443, 7, 100, 137, 0], // meteor 4
-            [14, 157, 78, 73, 0], // explosion 1
-            [103, 154, 99, 79, 0], // explosion 2
-            [213, 153, 42, 33, 0], // explosion 3
-            [317, 149, 93, 90, 0], // explosion 4
-            [421, 164, 97, 69, 0], // explosion 5
-            [529, 163, 71, 60, 0], // explosion 6
-            [0, 240, 710, 725, 0] // moon
+            [2, 1, 43, 43, 0], // player
+            [53, 11, 21, 21, 0], // food
         ],
 
         "animations": { // define animations
-            "player_stand": { "frames":[0]}, // idle
-            "player_jump": { "frames":[1]}, // jump
-            "player_move_left":{"frames":[2,0,3,0], "speed":0.2, "next":true}, // move left
-            "player_move_right":{"frames":[3,0,2,0], "speed":0.2, "next":false}, // move right
-            "meteor":{"frames":[4,5,6,7], "speed":0.2, "next":true}, // meteor
-            "explosion":{"frames":[8,9,10,11,12,13], "speed":0.2, "next":false}, // explosion
-            "moon":{"frames":[14]} // moon
+            "player": { "frames":[0]}, // player
+            "food": { "frames":[1]}, // food
         },
 
         "texturepacker": [

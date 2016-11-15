@@ -16,7 +16,8 @@ var assetData = [
     { id: "Rules", src: "../../Assets/images/instructions.png" },
     { id: "Title_Image", src: "../../Assets/images/title.png" },
     { id: "Gameover_Image", src: "../../Assets/images/gameover.png" },
-    { id: "Spritesheet", src: "../../Assets/images/spritesheet.png" }
+    { id: "Spritesheet", src: "../../Assets/images/spritesheet.png" },
+    { id: "Background_Image", src: "../../Assets/images/Background.png" }
 ];
 function preload() {
     // Create a queue for assets being loaded
@@ -38,30 +39,12 @@ function init() {
             assets.getResult("Spritesheet")
         ],
         "frames": [
-            [12, 8, 31, 42, 0],
-            [43, 8, 48, 43, 0],
-            [14, 56, 31, 42, 0],
-            [51, 55, 31, 42, 0],
-            [100, 7, 102, 132, 0],
-            [211, 7, 106, 139, 0],
-            [326, 7, 108, 135, 0],
-            [443, 7, 100, 137, 0],
-            [14, 157, 78, 73, 0],
-            [103, 154, 99, 79, 0],
-            [213, 153, 42, 33, 0],
-            [317, 149, 93, 90, 0],
-            [421, 164, 97, 69, 0],
-            [529, 163, 71, 60, 0],
-            [0, 240, 710, 725, 0] // moon
+            [2, 1, 43, 43, 0],
+            [53, 11, 21, 21, 0],
         ],
         "animations": {
-            "player_stand": { "frames": [0] },
-            "player_jump": { "frames": [1] },
-            "player_move_left": { "frames": [2, 0, 3, 0], "speed": 0.2, "next": true },
-            "player_move_right": { "frames": [3, 0, 2, 0], "speed": 0.2, "next": false },
-            "meteor": { "frames": [4, 5, 6, 7], "speed": 0.2, "next": true },
-            "explosion": { "frames": [8, 9, 10, 11, 12, 13], "speed": 0.2, "next": false },
-            "moon": { "frames": [14] } // moon
+            "player": { "frames": [0] },
+            "food": { "frames": [1] },
         },
         "texturepacker": [
             "SmartUpdateHash: $TexturePacker:SmartUpdate:013a2fc3dc6ba39276db3e6758d1ddbd:84789f29f2d01b3ea1c113a3b2d1bfdc:e696b1a5c9e543dbf26d7c8d29a6d04f$",
