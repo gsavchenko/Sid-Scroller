@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     Revision History:
     Name:               Date:        Description:
     -----------------------------------------------------------------------------------
-    George Savchenko    10/28/2016   Commented code and removed unnecessary variables
+    George Savchenko    11/20/2016   Commented code and removed unnecessary variables
 
 */
 var scenes;

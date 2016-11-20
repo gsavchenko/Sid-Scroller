@@ -1,23 +1,21 @@
 /*
     Managers module to group all user-defined objects under the same "namespace aka module"
     ------------------------------------------------------------------------------------
-    Class:          Meteor_Manager
-    Description:    Meteor_Manager class extends GameObject and manages creation/destruction of meteors
+    Class:          Food Manager
+    Description:    Food Manager class extends GameObject and manages creation of food
     Author:         George Savchenko
     Revision History:
     Name:               Date:       Description:
     -----------------------------------------------------------------------------------
-    George Savchenko    10/28/2016  Moved Meteor_Manager to managers and made it not
-                                    a GameObject. Lists no longer are added to infinitely;
-                                    maintain the size of the amount of objects on screen.
+    George Savchenko    11/20/2016  This is basically a food factory but don't tell anyone
 
 */
 module managers {
     export class Food_Manager{
-       
-        public foodList : objects.Food[] = new Array<objects.Food>(); // List of food on level
-        public foodGap : number = 10; // Gap between pieces of food
 
+        public foodList : objects.Food[] = new Array<objects.Food>(); // List of food on level
+        
+        private foodGap : number = 10; // Gap between pieces of food
         private foodAmount : number;
         // Spawn Area
         private _topLeftX : number = 300;
@@ -37,7 +35,7 @@ module managers {
             }
         }
 
-        // updated method handles updating meteors and explosions on screen
+        // updated method handles updating food
         public update() : void{
             var updatedFoodList : objects.Food[] = new Array<objects.Food>();
 
@@ -49,30 +47,25 @@ module managers {
             this.foodList = updatedFoodList;
         }
 
-        // createMeteor creates a meteor and adds it to the meteor_list
+        // createFood creates a meteor and adds it to the foodList
         public createFood() : void{
             this.foodList.push(new objects.Food("food", 
             this._getRandNum(this._topLeftX + this.foodGap, this._width), 
             this._getRandNum(this._topLeftY, this._height)));
         }
 
-        // addtoScene adds meteors and explosions in the list to the scene
+        // addtoScene adds food in the list to the scene
         public addToScene(scene : objects.Scene) : void{
             this.foodList.forEach(food => {
                 scene.addChild(food);
             });
         }
 
+         // addtoContainer adds food in the list to the scene
         public addToScrollContainer (container : createjs.Container) : void{
             this.foodList.forEach(food => {
                 container.addChild(food);
             });
-        }
-
-        // updateList creates temporary lists to which live meteors/explosions are added
-        // which is then set to the global lists
-        private updateList() : void{
-
         }
 
         // _getRandNum helper method that returns random number between range

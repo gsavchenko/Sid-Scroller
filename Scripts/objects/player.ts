@@ -7,7 +7,7 @@
     Revision History:
     Name:               Date:        Description:
     -----------------------------------------------------------------------------------
-    George Savchenko    10/28/2016   Updated Comments and deleted uncesseary information
+    George Savchenko    11/20/2016   Updated player controls
 */
 module objects {
     export class Player extends objects.GameObject {
@@ -65,12 +65,12 @@ module objects {
             }
         }
 
-        // Move the player left
+        // Move the player up
         public moveUp() {
             this.y -= 5;
         }
 
-        // Move the player right
+        // Move the player down
         public moveDown() {
             this.y += 5;
         }

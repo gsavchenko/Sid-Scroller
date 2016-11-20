@@ -7,7 +7,7 @@
     Revision History:
     Name:               Date:        Description:
     -----------------------------------------------------------------------------------
-    George Savchenko    10/28/2016   Refactored code to increase legibility and potentional issues
+    George Savchenko    11/20/2016   changed image for instructions
 */
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];

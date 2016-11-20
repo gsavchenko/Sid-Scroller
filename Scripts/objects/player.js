@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     Revision History:
     Name:               Date:        Description:
     -----------------------------------------------------------------------------------
-    George Savchenko    10/28/2016   Updated Comments and deleted uncesseary information
+    George Savchenko    11/20/2016   Updated player controls
 */
 var objects;
 (function (objects) {
@@ -63,11 +63,11 @@ var objects;
                     break;
             }
         };
-        // Move the player left
+        // Move the player up
         Player.prototype.moveUp = function () {
             this.y -= 5;
         };
-        // Move the player right
+        // Move the player down
         Player.prototype.moveDown = function () {
             this.y += 5;
         };

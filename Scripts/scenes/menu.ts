@@ -7,7 +7,6 @@
     Revision History:
     Name:               Date:        Description:
     -----------------------------------------------------------------------------------
-    George Savchenko    10/28/2016   Refactored code to increase legibility and potentional issues
 */
 module scenes {
     export class Menu extends objects.Scene {

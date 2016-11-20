@@ -6,13 +6,13 @@ var __extends = (this && this.__extends) || function (d, b) {
 /*
     Object module to group all user-defined objects under the same "namespace aka module"
     ------------------------------------------------------------------------------------
-    Class:          Meteor
-    Description:    Meteor class extends GameObject and creates/updates meteor objects.
+    Class:          Food
+    Description:    Food class extends GameObject and creates food objects.
     Author:         George Savchenko
     Revision History:
     Name:               Date:        Description:
     -----------------------------------------------------------------------------------
-    George Savchenko    10/28/2016   Removed _id that wasn't being used
+    George Savchenko    11/20/2016   food only need to be created by itself
 */
 var objects;
 (function (objects) {
