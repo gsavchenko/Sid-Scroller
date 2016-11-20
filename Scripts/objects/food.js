@@ -26,11 +26,6 @@ var objects;
             this.x = posX;
             this.y = posY;
         }
-        // Update the meteor's position
-        Food.prototype.update = function () {
-            if (this.y >= canvas.clientHeight)
-                this.isDead = true;
-        };
         return Food;
     }(objects.GameObject));
     objects.Food = Food;

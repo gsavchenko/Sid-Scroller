@@ -16,7 +16,6 @@ module scenes {
         private _buttonPlay : objects.Button; // Play button
         private _buttonRules : objects.Button; // Instruction button
         private _imageTitle : createjs.Bitmap; // Title image
-        private _mm : managers.Meteor_Manager; // Meteor manager   
 
         // Menu Class Contructor
         constructor() {

@@ -12,43 +12,37 @@
                                     maintain the size of the amount of objects on screen.
 
 */
-module managers {
-    export class Meteor_Manager{
-       
-        public foodList : objects.Food[] = new Array<objects.Food>(); // List of food on level
-        public foodGap : number = 10; // Gap between pieces of food
-
-        // Spawn Area
-        private _topLeftX : number = 300;
-        private _topLeftY : number = 0;
-        private _height : number = 580;
-        private _width : number = 1320 - this._topLeftX;
-
-        constructor(spawnAmount:number) {
+var managers;
+(function (managers) {
+    var Meteor_Manager = (function () {
+        function Meteor_Manager(spawnAmount) {
+            this.foodList = new Array(); // List of food on level
+            this.foodGap = 10; // Gap between pieces of food
+            // Spawn Area
+            this._topLeftX = 300;
+            this._topLeftY = 0;
+            this._height = 580;
+            this._width = 1320 - this._topLeftX;
             this.start();
         }
-
         // initialize variables
-        public start() : void {
-           //this._food = new objects.Food("food");
-           //this.addChild(this._food);
-        }
-
+        Meteor_Manager.prototype.start = function () {
+            //this._food = new objects.Food("food");
+            //this.addChild(this._food);
+        };
         // updated method handles updating meteors and explosions on screen
-        public update() : void{
-
-        }
-
+        Meteor_Manager.prototype.update = function () {
+        };
         // createMeteor creates a meteor and adds it to the meteor_list
-        public createFood() : void{
-            this.foodList.push(new objects.Food("food", 
-            this._getRandNum(this._topLeftX + this.foodGap, this._width), 
-            this._getRandNum(this._topLeftY, this._height)));
-        }
-
+        Meteor_Manager.prototype.createFood = function () {
+            this.foodList.push(new objects.Food("food", this._getRandNum(this._topLeftX + this.foodGap, this._width), this._getRandNum(this._topLeftY, this._height)));
+        };
         // _getRandNum helper method that returns random number between range
-        private _getRandNum(min : number, max : number) : number{
+        Meteor_Manager.prototype._getRandNum = function (min, max) {
             return Math.floor(Math.random() * max) + min;
-        }
-    }
-}
+        };
+        return Meteor_Manager;
+    }());
+    managers.Meteor_Manager = Meteor_Manager;
+})(managers || (managers = {}));
+//# sourceMappingURL=fiood_manager.js.map

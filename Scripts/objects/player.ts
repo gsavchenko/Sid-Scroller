@@ -37,7 +37,8 @@ module objects {
                 this.moveDown();
             }
 
-            this.x += 2;
+            if(this.x < 1280)
+                this.x += 2;
         }
 
         // Finite state machine pattern to check for input

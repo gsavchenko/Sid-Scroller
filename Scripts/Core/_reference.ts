@@ -14,7 +14,7 @@
 /// <reference path="../objects/food.ts" />
 
 /// <reference path="../managers/collision.ts" />
-/// <reference path="../managers/meteor_manager.ts" />
+/// <reference path="../managers/food_manager.ts" />
 
 /// <reference path="../scenes/menu.ts" />
 /// <reference path="../scenes/world.ts" />

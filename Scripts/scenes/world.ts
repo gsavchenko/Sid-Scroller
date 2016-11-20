@@ -17,9 +17,12 @@ module scenes {
         // Private variables
         private _imageGameOver : createjs.Bitmap; // Game over image
         private _imageBackground : createjs.Bitmap; // Background image
+        private _buttonMenu : objects.Button; // Menu button
         private _player : objects.Player;
         private _scrollableObjectContainer : createjs.Container;
-        private _food : objects.Food;
+        private _fm : managers.Food_Manager;
+        private _score : objects.Label; // Score text
+        private _scoreCount : number;
         
         constructor() {
             super();
@@ -36,30 +39,60 @@ module scenes {
             this._imageBackground = new createjs.Bitmap(assets.getResult("Background_Image"));
             this.addChild(this._imageBackground);
 
+            this._buttonMenu = new objects.Button("Menu_Button", config.Screen.CENTER_X + 60, config.Screen.CENTER_Y + 100);  
+
+            this._scoreCount = 0;
+            this._score = new objects.Label("HIGHSCORE: " + this._scoreCount, "30px Impact","#ffffff", 100, 25);            
+
             this._player = new objects.Player("player");
             this.addChild(this._player);
 
-            this._food = new objects.Food("food");
-            this._food.x = 400;
-            this._food.y = 350;
-            this.addChild(this._food);
+            this._fm = new managers.Food_Manager(10);
+            this._fm.addToScene(this);
 
             this._scrollableObjectContainer = new createjs.Container();
             this._scrollableObjectContainer.addChild(this._imageBackground);
             this._scrollableObjectContainer.addChild(this._player);
-            this._scrollableObjectContainer.addChild(this._food);
+            this._fm.addToScrollContainer(this._scrollableObjectContainer);
             this.addChild(this._scrollableObjectContainer);
             
             stage.addChild(this);
-            
+            stage.addChild(this._score);
         }
 
         // Update objects in scene
         public update() : void {
             this._player.update();
+            this._fm.update();
 
             if(this._player.x + 635 <= this._scrollableObjectContainer.getBounds().width)
                 this._scrollableObjectContainer.regX += 2;
+
+            this._fm.foodList.forEach(food => {            
+                if(collision.circleCircleCheck(this._player, food)){
+                    this._scrollableObjectContainer.removeChild(food);
+                    this.removeChild(food);
+                    food.isDead = true;
+                    this._scoreCount += 1;
+                    this._score.text = "HIGHSCORE: " + this._scoreCount;
+                }
+            });
+
+            if(this._player.x >= 1280){
+                
+                this._score.y = config.Screen.CENTER_Y;
+                this._buttonMenu.on("click", this.menuButtonClick, this);
+                stage.addChild(this._buttonMenu);
+
+                if(this._scoreCount < 10){
+                    this._score.text = "YOU LOSE TRY AGAIN \n\n        HIGHSCORE: " + this._scoreCount;
+                    this._score.x = config.Screen.CENTER_X + 30;
+                }
+                else{
+                    this._score.text = "CONGRAGULATIONS YOU WIN \n\n                  HIGHSCORE: " + this._scoreCount;
+                    this._score.x = config.Screen.CENTER_X - 20;
+                }
+            }
         }
 
         // Menu button method

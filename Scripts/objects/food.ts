@@ -20,12 +20,6 @@ module objects {
             super(gameAtlas, imageString, "");
             this.x = posX;
             this.y = posY;
-        }
-
-        // Update the meteor's position
-        public update() : void {
-            if(this.y >= canvas.clientHeight)
-                this.isDead = true
-        }        
+        }   
     }
 }
